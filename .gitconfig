@@ -1,0 +1,11 @@
+# This is Git's per-user configuration file.
+[user]
+ 	name = Dmytro Borysov
+	email = 4720760+dborysov@users.noreply.github.com
+[pager]
+       diff = diff-so-fancy | less --tabs=1,5 -RFX
+       show = diff-so-fancy | less --tabs=1,5 -RFX
+[gpg]
+	program = /usr/local/bin/gpg
+[commit]
+	gpgsign = true

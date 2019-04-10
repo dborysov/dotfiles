@@ -1,0 +1,23 @@
+defaults write -g com.apple.mouse.scaling 1.5;
+# Mouse right click
+# Autohide Dock
+# Dock zoom
+# sudo with touch id
+# require password immediately after sleep
+# Unlock with watch
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+defaults write com.apple.finder AppleShowAllFiles -bool YES;
+defaults write com.apple.dock mineffect suck;
+defaults write com.apple.dock scroll-to-open -bool TRUE;
+defaults write com.apple.dock static-only -bool TRUE;
+killall Dock;
+killall Finder;
+brew tap caskroom/cask;
+brew tap caskroom/cask-versions;
+brew tap caskroom/fonts;
+brew tap homebrew/command-not-found;
+brew install antigen bat brew-cask-completion circleci diff-so-fancy exa fd fzf gnupg htop kubectl prettyping readline telnet tldr tree;
+brew cask install docker figma font-fira-code google-chrome iterm2 keybase messenger microsoft-office microsoft-teams minikube slack spectacle tunnelblick viber virtualbox visual-studio-code-insiders whatsapp;
+yarn global add yalc;
+$(brew --prefix)/opt/fzf/install
