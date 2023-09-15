@@ -1,19 +1,37 @@
 antigen use oh-my-zsh
 
 antigen bundle git
+antigen bundle kubectl
+
+# acs status
+# acs --groups
+# acs
+antigen bundle aliases
+
+# bubu - update all
+antigen bundle brew
+
+# echo A H
+antigen bundle common-aliases
+antigen bundle thefuck
 antigen bundle npm
-antigen bundle lukechilds/zsh-nvm
-antigen bundle encode64
+antigen bundle yarn
 antigen bundle colorize
-antigen bundle osx
-antigen bundle bundler
-antigen bundle heroku
-antigen bundle pip
-antigen bundle lein
+antigen bundle macos
+antigen bundle macunha1/zsh-terraform
+
+export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
+antigen bundle lukechilds/zsh-nvm
+
+antigen bundle nvm
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle djui/alias-tips
+antigen bundle jira
+antigen bundle gitignore
+antigen bundle command-not-found
 
-antigen theme robbyrussell
+antigen theme romkatv/powerlevel10k
 
 antigen apply

@@ -1,70 +1,40 @@
-export PATH=/usr/local/bin:$PATH
-export NVM_AUTO_USE=true
-export NPM_TOKEN_AGILEHUB=<TO_BE_REPLACED_WITH_A_REAL_TOKEN>
+DISABLE_MAGIC_FUNCTIONS=true
+
+set -o vi
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 
 source $(brew --prefix)/share/antigen/antigen.zsh
-antigen init ~/.antigenrc
+antigen init  ~/.antigenrc
 
-bindkey "^[^[[D" backward-word
-bindkey "^[^[[C" forward-word
-
-export UPDATE_ZSH_DAYS=1
-
-# User configuration
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-
-# add support for ctrl+o to open selected file in VS Code
-export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code-insiders {})+abort'"
-
-alias ping="prettyping --nolegend"
-alias top="htop"
-alias cat="bat"
-alias preview="fzf --preview 'bat --color \"always\" {}'"
-alias gupm="gupa origin master"
-alias b="brew"
-alias ls="exa"
-alias l="exa -l"
-alias bs="brew search"
-alias bi="brew install"
-alias bci="brew cask install"
-alias n="npm"
-alias ni="npm i"
-alias niD="npm i -D"
-alias ns="npm start"
-alias nis="npm install && npm start"
-alias nt="npm test"
-alias ntu="npm test -- -u"
-alias y="yarn"
-alias yb="yarn build"
-alias yyb="yarn && yarn build"
-alias ys="yarn start"
-alias yys="yarn && yarn start"
-alias ya="yarn add"
-alias yaD="yarn add -D"
-alias yaG="yarn global add"
-alias yt="yarn test"
-alias ytt="yarn test:types"
-alias ytts="yarn tsc --noEmit | egrep '^[a-zA-Z0-9\/\.:_@\-]+' -oh | sort | uniq"
-alias ytu="yarn test -u"
-alias ytw="yarn test --watch -u"
-alias yyt="yarn && yarn test"
-alias vsci="code-insiders"
-
-plugins=(command-not-found)
-
-bindkey -v
-
-if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export YVM_DIR=~/.yvm
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+shell="$(basename $SHELL)"; eval "$(navi widget $shell)";
 
+eval $(thefuck --alias)
+
+source ~/.alias
+source ~/.custom-envs
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+autoload -U +X bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+
+complete -o nospace -C /usr/local/bin/terraform terraform
